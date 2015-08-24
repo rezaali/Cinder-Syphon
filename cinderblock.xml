@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+    name="Syphon"
+    id="info.v002.syphon"
+    git="git@github.com:rezaali/Cinder-Syphon.git"
+    author="Reza Ali"
+    summary="Syphon Implementation for Cinder 0.9.0+"
+    version="Alpha"
+    url="https://github.com/rezaali/Cinder-Syphon"
+    library="http://syphon.v002.info"
+    >
+    <supports os="macosx" />
+    <headerPattern>src/*.h</headerPattern>
+    <sourcePattern>src/*.mm</sourcePattern>
+    <header>lib/SyphonNameboundClient.h</header>
+    <source>lib/SyphonNameboundClient.m</source>
+    <platform os="macosx">
+        <framework>lib/Syphon.framework</framework>
+        <buildCopy destination="Frameworks">lib/Syphon.framework</buildCopy>
+        <frameworkPath>lib/</frameworkPath>
+    </platform>
+</block>
+</cinder>
