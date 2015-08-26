@@ -12,7 +12,7 @@ public:
     {
         return ServerRef( new Server() );
     }
-    
+    Server();
     ~Server();
     
 	void setName( const std::string& name );
@@ -25,10 +25,7 @@ public:
     void unbind();
     
 protected:
-    Server();
-
-    ci::gl::Texture2dRef mTexture;
-    bool mBinded;
+    bool mBinded = false;
 	void *mServer;
 };
 

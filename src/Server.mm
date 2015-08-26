@@ -32,10 +32,6 @@ void Server::setName( const std::string& name )
 		[(SyphonServer *)mServer setName:title];
 	}
     
-    
-    mTexture = ci::gl::Texture2d::create( ci::loadImage( ci::app::loadAsset( ci::fs::path( "kristin.jpg" ) ) ),
-                                         ci::gl::Texture::Format().loadTopDown() );
-    
     [pool drain];
 }
 
@@ -56,11 +52,9 @@ std::string Server::getName()
 
 void Server::publishScreen()
 {
-//	ci::gl::TextureRef mTex = ci::gl::Texture::create( ci::app::copyWindowSurface() );
-//	this->publishTexture( mTex );
-	this->publishTexture( mTexture );
+	ci::gl::TextureRef mTex = ci::gl::Texture::create( ci::app::copyWindowSurface() );
+	this->publishTexture( mTex );
 }
-
 
 void Server::publishTexture( ci::gl::TextureRef texture )
 {
