@@ -27,7 +27,7 @@ void Server::setName( const std::string& name )
 	NSString *title = [NSString stringWithCString:name.c_str() encoding:[NSString defaultCStringEncoding]];
 	
 	if( !mServer ) {
-		mServer = [[SyphonServer alloc] initWithName:title context:CGLGetCurrentContext() options:nil];
+        mServer = [[SyphonServer alloc] initWithName:title context:CGLGetCurrentContext() options:@{ SyphonServerOptionAntialiasSampleCount : @(0) } ];
 	} else {
 		[(SyphonServer *)mServer setName:title];
 	}
@@ -70,7 +70,7 @@ void Server::publishTexture( ci::gl::TextureRef texture )
         
         [(SyphonServer *)mServer publishFrameTexture:texID
                                        textureTarget: texture->getTarget()
-                                         imageRegion:NSMakeRect( 0, 0, texture->getWidth(), texture->getHeight() ) textureDimensions:NSMakeSize( texture->getWidth(), texture->getHeight() ) flipped:true];
+                                         imageRegion:NSMakeRect( 0, 0, texture->getWidth(), texture->getHeight() ) textureDimensions:NSMakeSize( texture->getWidth(), texture->getHeight() ) flipped:true ];
 
 		[pool drain];
 	} else {
@@ -78,9 +78,10 @@ void Server::publishTexture( ci::gl::TextureRef texture )
 	}
 }
 
-void Server::bind( glm::vec2 size )
+bool Server::bind( glm::vec2 size )
 {
-   mBinded = [(SyphonServer *)mServer bindToDrawFrameOfSize:NSMakeSize( size.x, size.y )];
+    mBinded = [(SyphonServer *)mServer bindToDrawFrameOfSize:NSMakeSize( size.x, size.y )];
+    return mBinded;
 }
 
 void Server::unbind()

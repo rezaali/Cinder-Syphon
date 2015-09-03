@@ -21,7 +21,7 @@ public:
     void publishScreen();
     void publishTexture( ci::gl::TextureRef texture );
     
-    void bind( glm::vec2 size );
+    bool bind( glm::vec2 size );
     void unbind();
     
 protected:
